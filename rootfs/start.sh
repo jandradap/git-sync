@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+# -*- ENCODING: UTF-8 -*-
 
 gitSecret="/root/.ssh/id_rsa"
 mkdir -p /root/.ssh
@@ -8,7 +8,7 @@ if [ -n "$GIT_SYNC_PRIVATE_KEY" ]; then
 fi
 
 if [ -z "$GIT_SYNC_REPO" ]; then
-    echo "No git repository specified in GIT_SYNC_REPO"
+    echo -e "\nERROR: No git repository specified in GIT_SYNC_REPO"
     exit 1
 fi
 grepo="$GIT_SYNC_REPO"
@@ -37,7 +37,7 @@ if [ -n "$gssh" ]; then
 fi
 if [ -n "$gusername" ] && [ -n "$gpassword" ]; then
     git config --global credential.helper cache
-    echo "url=$grepo\nusername=$gusername\npassword=$gpassword\n" | git credential approve
+    echo -e "url=$grepo\nusername=$gusername\npassword=$gpassword\n" | git credential approve
 fi
 
 gitcmd="git -c http.sslVerify=false clone $grepo --branch $gbranch --single-branch "
@@ -69,9 +69,10 @@ doChanges
 if [ -z "$gonce" ]; then
     while true
     do
-	    sleep $gwait
-        git -c http.sslVerify=false pull
-        doChanges
+      echo -e "\nWaiting $gwait for update..."
+      sleep $gwait
+      git -c http.sslVerify=false pull
+      doChanges
     done
 else
     while true
