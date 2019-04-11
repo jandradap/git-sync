@@ -28,7 +28,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
     /var/log/bootstrap.log \
     /var/log/alternatives.log
 
-COPY start.sh /start.sh
+COPY rootfs/start.sh /start.sh
 
 RUN chmod 755 /start.sh
 
