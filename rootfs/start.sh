@@ -7,6 +7,11 @@ if [ -n "$GIT_SYNC_PRIVATE_KEY" ]; then
     echo "$GIT_SYNC_PRIVATE_KEY" > "$gitSecret"
 fi
 
+gitHosts="/root/.ssh/known_hosts"
+if [ -n "$GIT_SYNC_KNOWN_HOSTS" ]; then
+    echo "$GIT_SYNC_KNOWN_HOSTS" > "$gitHosts"
+fi
+
 if [ -z "$GIT_SYNC_REPO" ]; then
     echo -e "\nERROR: No git repository specified in GIT_SYNC_REPO"
     exit 1
