@@ -20,6 +20,7 @@ We use a lot of the same environment variables that the Kubernetes git-sync cont
 * `GIT_SYNC_ONE_TIME` – Whether we should clone once and never pull again.
 * `GIT_SYNC_USERNAME` – The auth username to use.
 * `GIT_SYNC_PASSWORD` – The auth password to use.
+* `GIT_SYNC_KNOWN_HOSTS` - The known_hosts file content
 
 Plus we add a couple more.
 

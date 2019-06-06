@@ -5,6 +5,12 @@ gitSecret="/root/.ssh/id_rsa"
 mkdir -p /root/.ssh
 if [ -n "$GIT_SYNC_PRIVATE_KEY" ]; then
     echo "$GIT_SYNC_PRIVATE_KEY" > "$gitSecret"
+    chmod 0600 "$gitSecret"
+fi
+
+gitHosts="/root/.ssh/known_hosts"
+if [ -n "$GIT_SYNC_KNOWN_HOSTS" ]; then
+    echo "$GIT_SYNC_KNOWN_HOSTS" > "$gitHosts"
 fi
 
 if [ -z "$GIT_SYNC_REPO" ]; then
